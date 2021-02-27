@@ -360,7 +360,7 @@ class NginxConfig(object):
         context.log.info('running %s -t -c %s' % (self.binary, self.filename))
         if self.binary:
             try:
-                _, nginx_t_err = subp.call("%s -t -c %s" % (self.binary, self.filename), check=False)
+                _, nginx_t_err = subp.call("sudo %s -t -c %s" % (self.binary, self.filename), check=False)
                 for line in nginx_t_err:
                     if 'syntax is' in line and 'syntax is ok' not in line:
                         self.test_errors.append(line)
